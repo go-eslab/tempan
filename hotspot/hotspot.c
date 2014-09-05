@@ -4,11 +4,11 @@
 
 #define WHITESPACE " \t"
 
-size_t parseConfigLine(str_pair *table, size_t max, const char *line) {
+size_t parseParams(str_pair *table, size_t max, const char *params) {
 	char first = 1;
 	size_t count = 0;
 
-	char *p = strtok((char *)line, WHITESPACE);
+	char *p = strtok((char *)params, WHITESPACE);
 	while (p != NULL && count < max) {
 		if (first) strcpy(table[count].value, p);
 		else strcpy(table[count++].name, p);
@@ -18,7 +18,7 @@ size_t parseConfigLine(str_pair *table, size_t max, const char *line) {
 	return count;
 }
 
-HotSpot *newHotSpot(const char *floorplan, const char *config, const char *line) {
+HotSpot *newHotSpot(const char *floorplan, const char *config, const char *params) {
 	HotSpot *h = (HotSpot *)malloc(sizeof(HotSpot));
 
 	h->config = default_thermal_config();
@@ -29,9 +29,9 @@ HotSpot *newHotSpot(const char *floorplan, const char *config, const char *line)
 		thermal_config_add_from_strs(&h->config, table, count);
 	}
 
-	if (line && strlen(line) > 0) {
+	if (params && strlen(params) > 0) {
 		str_pair table[MAX_ENTRIES];
-		size_t count = parseConfigLine(table, MAX_ENTRIES, line);
+		size_t count = parseParams(table, MAX_ENTRIES, params);
 		thermal_config_add_from_strs(&h->config, table, count);
 	}
 

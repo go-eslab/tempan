@@ -14,7 +14,7 @@ typedef struct {
 	size_t           cores;
 } HotSpot;
 
-HotSpot *newHotSpot(const char *floorplan, const char *config, const char *line);
+HotSpot *newHotSpot(const char *floorplan, const char *config, const char *params);
 void freeHotSpot(HotSpot *);
 
 void copyA(const HotSpot *, double *);
