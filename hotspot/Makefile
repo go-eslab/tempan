@@ -4,11 +4,10 @@ url := http://lava.cs.virginia.edu/HotSpot/grab/$(archive)
 
 build := build
 
-all: $(library)
+all: $(build)/$(library)
 
-$(library): $(build)
+$(build)/$(library): $(build)
 	$(MAKE) -C $(build)
-	mv $(build)/$(library) $@
 
 $(build): $(archive)
 	mkdir $@
