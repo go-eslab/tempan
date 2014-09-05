@@ -17,8 +17,7 @@ typedef struct {
 HotSpot *newHotSpot(const char *floorplan, const char *config, const char *params);
 void freeHotSpot(HotSpot *);
 
-void copyA(const HotSpot *, double *);
-void copyB(const HotSpot *, double *);
+void copyC(const HotSpot *, double *);
 void copyG(const HotSpot *, double *);
 
 #endif

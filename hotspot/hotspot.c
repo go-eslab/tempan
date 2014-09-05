@@ -53,7 +53,7 @@ void freeHotSpot(HotSpot *h) {
 	free(h);
 }
 
-void copyA(const HotSpot *h, double *dst) {
+void copyC(const HotSpot *h, double *dst) {
 	const double *src = h->model->block->a;
 	size_t count = h->nodes;
 
@@ -61,17 +61,8 @@ void copyA(const HotSpot *h, double *dst) {
 		dst[i] = src[i];
 }
 
-void copyB(const HotSpot *h, double *dst) {
-	const double *const *src = (const double *const *)h->model->block->b;
-	size_t count = h->nodes;
-
-	for (size_t i = 0; i < count; i++)
-		for (size_t j = 0; j < count; j++)
-			dst[i * count + j] = src[i][j];
-}
-
 void copyG(const HotSpot *h, double *dst) {
-	const double *const *src = (const double *const *)h->model->block->g;
+	const double *const *src = (const double *const *)h->model->block->b;
 	size_t count = h->nodes;
 
 	for (size_t i = 0; i < count; i++)
