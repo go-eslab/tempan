@@ -4,7 +4,7 @@ import (
 	"path"
 	"testing"
 
-	"github.com/go-eslab/support/assert"
+	"github.com/go-math/support/assert"
 )
 
 const (
