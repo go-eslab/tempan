@@ -5,7 +5,7 @@
 package hotspot
 
 // #cgo CFLAGS: -Ibuild
-// #cgo LDFLAGS: -Wl,-no_compact_unwind -Lbuild -lhotspot
+// #cgo LDFLAGS: -Wl,-no_compact_unwind
 // #include <stdlib.h>
 // #include "hotspot.h"
 import "C"
