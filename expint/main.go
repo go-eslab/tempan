@@ -35,9 +35,9 @@ func New(configPath string) (*Solver, error) {
 
 	var i, j uint32
 
-	// Reusing h.G to store A.
+	// Reusing h.G to store A and h.C to store D.
 	A := h.G
-	D := make([]float64, nc)
+	D := h.C
 	for i = 0; i < nc; i++ {
 		D[i] = math.Sqrt(1 / h.C[i])
 	}
@@ -84,8 +84,8 @@ func New(configPath string) (*Solver, error) {
 	F := make([]float64, nc*cc)
 	matrix.Multiply(U, temp, F, nc, nc, cc)
 
-	s.Cores = uint16(cc)
-	s.Nodes = uint16(nc)
+	s.Cores = h.Cores
+	s.Nodes = h.Nodes
 
 	s.system.D = D
 
