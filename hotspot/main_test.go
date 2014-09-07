@@ -11,8 +11,8 @@ const (
 	fixturePath = "fixtures"
 )
 
-func TestLoad(t *testing.T) {
-	model := Load(findFixture("002.flp"), findFixture("hotspot.config"), "")
+func TestNew(t *testing.T) {
+	model := New(findFixture("002.flp"), findFixture("hotspot.config"), "")
 
 	assert.Equal(model.Cores, uint16(2), t)
 	assert.Equal(model.Nodes, uint16(20), t)
@@ -27,7 +27,7 @@ func BenchmarkLoad(b *testing.B) {
 	params := ""
 
 	for i := 0; i < b.N; i++ {
-		Load(floorplan, config, params)
+		New(floorplan, config, params)
 	}
 }
 

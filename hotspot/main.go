@@ -34,12 +34,12 @@ type Model struct {
 	G []float64
 }
 
-// Load returns the block HotSpot model corresponding to the given floorplan
+// New returns the block HotSpot model corresponding to the given floorplan
 // file, configuration file, and parameter line. The parameter line bears the
 // same meaning as the command-line arguments of the HotSpot tool. The names of
 // parameters should not include dashes in front of them; for instance, params
 // can be "t_chip 0.00015 k_chip 100.0".
-func Load(floorplan string, config string, params string) *Model {
+func New(floorplan string, config string, params string) *Model {
 	cfloorplan := C.CString(floorplan)
 	defer C.free(unsafe.Pointer(cfloorplan))
 

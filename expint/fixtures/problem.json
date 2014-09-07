@@ -1,0 +1,7 @@
+{
+	"floorplan": "fixtures/002.flp",
+	"hotspot": {
+		"config": "fixtures/hotspot.config",
+		"params": ""
+	}
+}
