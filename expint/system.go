@@ -1,18 +1,16 @@
 package expint
 
-import (
-	"github.com/go-math/linal/matrix"
-)
-
 type system struct {
-	A *matrix.Matrix
-	B *matrix.Matrix
-	C *matrix.Matrix
+	// D = Cth^(-1/2)
+	D []float64
 
-	U *matrix.Matrix
-	L *matrix.Matrix
-	V *matrix.Matrix
+	// A = U * diag(L) * transpose(U)
+	U []float64
+	L []float64
 
-	E *matrix.Matrix
-	F *matrix.Matrix
+	B []float64
+	C []float64
+
+	E []float64
+	F []float64
 }

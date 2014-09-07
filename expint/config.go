@@ -2,6 +2,7 @@ package expint
 
 import (
 	"encoding/json"
+	"errors"
 	"os"
 )
 
@@ -12,6 +13,7 @@ type Config struct {
 		Config string
 		Params string
 	}
+	TimeStep float64
 }
 
 func (c *Config) load(path string) error {
@@ -19,14 +21,24 @@ func (c *Config) load(path string) error {
 	if err != nil {
 		return err
 	}
-
 	defer file.Close()
 
 	dec := json.NewDecoder(file)
-	err = dec.Decode(c)
 
-	if err != nil {
+	if err = dec.Decode(c); err != nil {
 		return err
+	}
+
+	if err = c.validate(); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (c *Config) validate() error {
+	if c.TimeStep <= 0 {
+		return errors.New("the time step is invalid")
 	}
 
 	return nil
