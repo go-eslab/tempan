@@ -8,8 +8,8 @@ import (
 type Solver struct {
 	Config Config
 
-	Cores  uint16
-	Nodes  uint16
+	Cores uint16
+	Nodes uint16
 
 	system system
 }
