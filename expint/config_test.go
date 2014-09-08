@@ -16,4 +16,5 @@ func TestConfigLoad(t *testing.T) {
 	assert.Equal(c.HotSpot.Config, findFixture("hotspot.config"), t)
 	assert.Equal(c.HotSpot.Params, "", t)
 	assert.Equal(c.TimeStep, 1e-3, t)
+	assert.Equal(c.AmbientTemp, 318.15, t)
 }

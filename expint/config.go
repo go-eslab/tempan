@@ -8,22 +8,25 @@ import (
 
 // Config captures the configuration of a particular problem.
 type Config struct {
-	// The path to a file specifying the floorplan of the platform to analyze.
+	// The floorplan file of the platform to analyze.
 	Floorplan string
 
-	// Options related to the HotSpot model.
+	// The options specific to the HotSpot model.
 	HotSpot struct {
-		// The path to a native configuration file (hotspot.config).
+		// A native configuration file (hotspot.config).
 		Config string
 		// A line of parameters overwriting the parameters in the above file.
 		Params string
 	}
 
-	// A sampling interval to be used for temperature analysis. It is the time
-	// between two successive samples of power in power profiles and two
-	// successive samples of temperature in temperature profiles. In the
-	// package, it is referred to as dt.
-	TimeStep float64
+	// The sampling interval of temperature analysis. It is the time between
+	// two successive samples of power or temperature in power or temperature
+	// profiles, respectively. In the formulas given in the general description
+	// of the package, it is referred to as dt.
+	TimeStep float64 // in seconds
+
+	// The temperature of the ambience.
+	AmbientTemp float64 // in Kelvin
 }
 
 func (c *Config) load(path string) error {
