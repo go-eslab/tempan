@@ -10,8 +10,8 @@ import (
 func TestNew(t *testing.T) {
 	s, _ := New(findFixture("problem.json"))
 
-	assert.Equal(s.Cores, uint16(2), t)
-	assert.Equal(s.Nodes, uint16(4*2+12), t)
+	assert.Equal(s.Cores, uint32(2), t)
+	assert.Equal(s.Nodes, uint32(4*2+12), t)
 
 	assert.AlmostEqual(s.system.D, fixtureD, t)
 

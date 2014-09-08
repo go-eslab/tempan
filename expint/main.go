@@ -8,12 +8,13 @@ import (
 	"github.com/go-math/linal/matrix"
 )
 
-// Solver represents the algorithm configured for a particular platform.
+// Solver represents the algorithm for temperature analysis configured for a
+// particular problem.
 type Solver struct {
 	Config Config
 
-	Cores uint16
-	Nodes uint16
+	Cores uint32
+	Nodes uint32
 
 	system system
 }
@@ -30,8 +31,8 @@ func New(configPath string) (*Solver, error) {
 
 	h := hotspot.New(c.Floorplan, c.HotSpot.Config, c.HotSpot.Params)
 
-	cc := uint32(h.Cores)
-	nc := uint32(h.Nodes)
+	cc := h.Cores
+	nc := h.Nodes
 
 	var i, j uint32
 
