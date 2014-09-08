@@ -12,15 +12,13 @@ import (
 func (s *Solver) ComputeTransient(P, Q []float64, cc uint32, sc uint32) {
 	nc := s.Nodes
 
-	FP := make([]float64, nc*sc)
-	matrix.Multiply(s.system.F, P, FP, nc, cc, sc)
+	X := make([]float64, nc*sc)
+	matrix.Multiply(s.system.F, P, X, nc, cc, sc)
 
 	var i, j, k uint32
 
-	X := make([]float64, nc*sc)
-	copy(X, FP[:nc])
 	for i, j, k = 1, 0, nc; i < sc; i++ {
-		matrix.MultiplyAdd(s.system.E, X[j:k], FP[k:k+nc], X[k:k+nc], nc, nc, 1)
+		matrix.MultiplyAdd(s.system.E, X[j:k], X[k:k+nc], X[k:k+nc], nc, nc, 1)
 		j += nc
 		k += nc
 	}
