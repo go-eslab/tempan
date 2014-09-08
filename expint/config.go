@@ -6,13 +6,23 @@ import (
 	"os"
 )
 
-// Config is a particular configuration of the algorithm.
+// Config captures the configuration of a particular problem.
 type Config struct {
+	// The path to a file specifying the floorplan of the platform to analyze.
 	Floorplan string
-	HotSpot   struct {
+
+	// Options related to the HotSpot model.
+	HotSpot struct {
+		// The path to a native configuration file (hotspot.config).
 		Config string
+		// A line of parameters overwriting the parameters in the above file.
 		Params string
 	}
+
+	// A sampling interval to be used for temperature analysis. It is the time
+	// between two successive samples of power in power profiles and two
+	// successive samples of temperature in temperature profiles. In the
+	// package, it is referred to as dt.
 	TimeStep float64
 }
 
