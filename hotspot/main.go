@@ -27,8 +27,8 @@ import "unsafe"
 //     C is a Nodes-element vector of capacitance, and
 //     G is a (Nodes x Nodes) matrix of conductance.
 type Model struct {
-	Cores uint16
-	Nodes uint16
+	Cores uint32
+	Nodes uint32
 
 	C []float64
 	G []float64
@@ -52,12 +52,12 @@ func New(floorplan string, config string, params string) *Model {
 	h := C.newHotSpot(cfloorplan, cconfig, cparams)
 	defer C.freeHotSpot(h)
 
-	cc := uint16(h.cores)
+	cc := uint32(h.cores)
 	nc := uint32(h.nodes)
 
 	m := &Model{
 		Cores: cc,
-		Nodes: uint16(nc),
+		Nodes: nc,
 
 		C: make([]float64, nc),
 		G: make([]float64, nc*nc),

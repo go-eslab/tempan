@@ -14,8 +14,8 @@ const (
 func TestNew(t *testing.T) {
 	model := New(findFixture("002.flp"), findFixture("hotspot.config"), "")
 
-	assert.Equal(model.Cores, uint16(2), t)
-	assert.Equal(model.Nodes, uint16(20), t)
+	assert.Equal(model.Cores, uint32(2), t)
+	assert.Equal(model.Nodes, uint32(20), t)
 
 	assert.AlmostEqual(model.C, fixtureC, t)
 	assert.AlmostEqual(model.G, fixtureG, t)
