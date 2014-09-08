@@ -25,7 +25,7 @@ func (s *Solver) ComputeTransient(P, Q []float64, cc uint32, sc uint32) {
 
 	for i = 0; i < cc; i++ {
 		for j = 0; j < sc; j++ {
-			Q[cc*j+i] = s.system.D[i] * X[nc*j+i] + s.Config.AmbientTemp
+			Q[cc*j+i] = s.system.D[i]*X[nc*j+i] + s.Config.AmbientTemp
 		}
 	}
 }
