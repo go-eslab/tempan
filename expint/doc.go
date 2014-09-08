@@ -1,43 +1,42 @@
-// Package expint provides an exponential-integrator-based solver of systems
+// Package expint provides an exponential-integrator-based solver for systems
 // of differential-algebraic equations modeling temperature of electronic
 // systems.
 //
 // The initial thermal system is
 //
-//     Cth * dQth/dt + Gth * (Qth - Qamb) = M * P
-//     Q = M^T * Qth
+//     C * dQ'/dt + G * (Q' - Qamb) = M * P
+//     Q = M**T * Q'
 //
-// where Qth is the temperature of all thermal nodes while Q is the
-// temperature of those nodes that are active (processing elements).
+// where C and G are the thermal capacitance and conductance matrices,
+// respectively; Q' and Q are the temperature vectors of all thermal nodes and
+// those that correspond to the processing elements, respectively; Qamb is the
+// ambient temperature; P is the power vector of the processing elements; and
+// M is a rectangular diagonal matrix whose diagonal elements equal to unity.
 //
 // The transformed system is
 //
-//     dX/dt = A * X + B * P
-//     Q = C * X + Qamb
+//     dS/dt = A * S + B * P
+//     Q = B**T * S + Qamb
 //
 // where
 //
-//     X = D^(-1) * (Qth - Qamb),
-//     A = D * (-Gth) * D,
-//     B = D * M,
-//     C = B^T, and
-//     D = Cth^(-1/2).
+//     S = D**(-1) * (Q' - Qamb),
+//     A = -D * G * D,
+//     B = D * M, and
+//     D = C**(-1/2).
 //
 // The eigendecomposition of A, which is real and symmetric, is
 //
-//     A = U * diag(L) * U^(-1) = U * diag(L) * U^T.
+//     A = U * diag(L) * U**T.
 //
 // The solution of the system for a short time interval [0, dt] is based on the
 // following recurrence:
 //
-//     X(t) = E * X(0) + F * P(0).
+//     S(t) = E * S(0) + F * P(0)
 //
-// The first coefficient of the recurrence:
+// where
 //
-//     E = exp(A * dt) = U * diag(exp(li * dt)) * U^T.
-//
-// The second coefficient of the recurrence:
-//
-//     F = A^(-1) * (exp(A * dt) - I) * B
-//       = U * diag((exp(li * dt) - 1) / li) * U^T * B.
+//     E = exp(A * dt) = U * diag(exp(li * dt)) * U**T and
+//     F = A**(-1) * (exp(A * dt) - I) * B
+//       = U * diag((exp(li * dt) - 1) / li) * U**T * B.
 package expint
