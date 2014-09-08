@@ -7,7 +7,7 @@ import (
 )
 
 func TestSolverComputeTransient(t *testing.T) {
-	s, _ := New(findFixture("problem.json"))
+	s, _ := New(findFixture("002.json"))
 
 	cc := uint32(2)
 	sc := uint32(len(fixtureP)) / cc

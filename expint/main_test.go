@@ -8,7 +8,7 @@ import (
 )
 
 func TestNew(t *testing.T) {
-	s, _ := New(findFixture("problem.json"))
+	s, _ := New(findFixture("002.json"))
 
 	assert.Equal(s.Cores, uint32(2), t)
 	assert.Equal(s.Nodes, uint32(4*2+12), t)

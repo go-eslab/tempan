@@ -8,7 +8,7 @@ import (
 
 func TestConfigLoad(t *testing.T) {
 	c := new(Config)
-	err := c.load(findFixture("problem.json"))
+	err := c.load(findFixture("002.json"))
 
 	assert.Success(err, t)
 
