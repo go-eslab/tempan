@@ -7,7 +7,7 @@ import (
 	"github.com/go-math/support/fixture"
 )
 
-func TestSolverComputeTransient(t *testing.T) {
+func TestComputeTransient(t *testing.T) {
 	s, _ := Load(findFixture("002.json"))
 
 	cc := uint32(2)
@@ -19,7 +19,7 @@ func TestSolverComputeTransient(t *testing.T) {
 	assert.AlmostEqual(Q, fixtureQ, t)
 }
 
-func BenchmarkSolverComputeTransient(b *testing.B) {
+func BenchmarkComputeTransient(b *testing.B) {
 	s, _ := Load(findFixture("032.json"))
 
 	cc := uint32(32)

@@ -8,9 +8,9 @@ import (
 	"github.com/go-math/linal/matrix"
 )
 
-// Solver represents the algorithm for temperature analysis configured for a
+// Self represents the algorithm for temperature analysis configured for a
 // particular problem.
-type Solver struct {
+type Self struct {
 	Config *Config
 
 	Cores uint32
@@ -19,10 +19,10 @@ type Solver struct {
 	system system
 }
 
-// New returns an instance of the solver set up according to the given
+// New returns an instance of the algorithm set up according to the given
 // configuration.
-func New(c *Config) (*Solver, error) {
-	s := &Solver{
+func New(c *Config) (*Self, error) {
+	s := &Self{
 		Config: c,
 	}
 
@@ -96,9 +96,9 @@ func New(c *Config) (*Solver, error) {
 	return s, nil
 }
 
-// Load returns an instance of the solver set up according to the given
+// Load returns an instance of the algorithm set up according to the given
 // configuration file.
-func Load(path string) (*Solver, error) {
+func Load(path string) (*Self, error) {
 	config := new(Config)
 
 	if err := config.load(path); err != nil {
