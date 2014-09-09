@@ -11,7 +11,7 @@ import (
 // Solver represents the algorithm for temperature analysis configured for a
 // particular problem.
 type Solver struct {
-	Config Config
+	Config *Config
 
 	Cores uint32
 	Nodes uint32
@@ -19,14 +19,11 @@ type Solver struct {
 	system system
 }
 
-// New returns an instance of the solver configured according to the given
-// arguments.
-func New(configPath string) (*Solver, error) {
-	s := new(Solver)
-
-	c := &s.Config
-	if err := c.load(configPath); err != nil {
-		return nil, err
+// New returns an instance of the solver set up according to the given
+// configuration.
+func New(c *Config) (*Solver, error) {
+	s := &Solver{
+		Config: c,
 	}
 
 	h := hotspot.New(c.Floorplan, c.HotSpot.Config, c.HotSpot.Params)
@@ -97,4 +94,16 @@ func New(configPath string) (*Solver, error) {
 	s.system.F = F
 
 	return s, nil
+}
+
+// Load returns an instance of the solver set up according to the given
+// configuration file.
+func Load(path string) (*Solver, error) {
+	config := new(Config)
+
+	if err := config.load(path); err != nil {
+		return nil, err
+	}
+
+	return New(config)
 }

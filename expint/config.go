@@ -42,14 +42,14 @@ func (c *Config) load(path string) error {
 		return err
 	}
 
-	if err = c.validate(); err != nil {
+	if err = c.Validate(); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (c *Config) validate() error {
+func (c *Config) Validate() error {
 	if c.TimeStep <= 0 {
 		return errors.New("the time step is invalid")
 	}

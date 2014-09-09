@@ -7,8 +7,8 @@ import (
 	"github.com/go-math/support/assert"
 )
 
-func TestNew(t *testing.T) {
-	s, _ := New(findFixture("002.json"))
+func TestLoad(t *testing.T) {
+	s, _ := Load(findFixture("002.json"))
 
 	assert.Equal(s.Cores, uint32(2), t)
 	assert.Equal(s.Nodes, uint32(4*2+12), t)
