@@ -20,20 +20,21 @@ size_t parseParams(str_pair *table, size_t max, const char *params) {
 
 HotSpot *newHotSpot(const char *floorplan, const char *config, const char *params) {
 	HotSpot *h = (HotSpot *)malloc(sizeof(HotSpot));
-
 	h->config = default_thermal_config();
 
+	str_pair *table = (str_pair *)malloc(sizeof(str_pair) * MAX_ENTRIES);
+
 	if (config && strlen(config) > 0) {
-		str_pair table[MAX_ENTRIES];
 		size_t count = read_str_pairs(table, MAX_ENTRIES, (char *)config);
 		thermal_config_add_from_strs(&h->config, table, count);
 	}
 
 	if (params && strlen(params) > 0) {
-		str_pair table[MAX_ENTRIES];
 		size_t count = parseParams(table, MAX_ENTRIES, params);
 		thermal_config_add_from_strs(&h->config, table, count);
 	}
+
+	free(table);
 
 	h->floorplan = read_flp((char *)floorplan, FALSE);
 	h->model = alloc_RC_model(&h->config, h->floorplan);
