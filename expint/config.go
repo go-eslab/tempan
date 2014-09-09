@@ -2,7 +2,6 @@ package expint
 
 import (
 	"encoding/json"
-	"errors"
 	"os"
 )
 
@@ -37,21 +36,8 @@ func (c *Config) load(path string) error {
 	defer file.Close()
 
 	dec := json.NewDecoder(file)
-
 	if err = dec.Decode(c); err != nil {
 		return err
-	}
-
-	if err = c.Validate(); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (c *Config) Validate() error {
-	if c.TimeStep <= 0 {
-		return errors.New("the time step is invalid")
 	}
 
 	return nil
