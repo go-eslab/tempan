@@ -11,7 +11,7 @@ import (
 // Self represents the algorithm for temperature analysis configured for a
 // particular problem.
 type Self struct {
-	Config *Config
+	Config Config
 
 	Cores uint32
 	Nodes uint32
@@ -21,7 +21,7 @@ type Self struct {
 
 // New returns an instance of the algorithm set up according to the given
 // configuration.
-func New(c *Config) (*Self, error) {
+func New(c Config) (*Self, error) {
 	s := &Self{
 		Config: c,
 	}
@@ -99,9 +99,8 @@ func New(c *Config) (*Self, error) {
 // Load returns an instance of the algorithm set up according to the given
 // configuration file.
 func Load(path string) (*Self, error) {
-	config := new(Config)
-
-	if err := config.load(path); err != nil {
+	config, err := loadConfig(path)
+	if err != nil {
 		return nil, err
 	}
 

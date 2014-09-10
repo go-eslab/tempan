@@ -28,17 +28,19 @@ type Config struct {
 	AmbientTemp float64 // in Kelvin
 }
 
-func (c *Config) load(path string) error {
+func loadConfig(path string) (Config, error) {
+	c := Config{}
+
 	file, err := os.Open(path)
 	if err != nil {
-		return err
+		return c, err
 	}
 	defer file.Close()
 
 	dec := json.NewDecoder(file)
-	if err = dec.Decode(c); err != nil {
-		return err
+	if err = dec.Decode(&c); err != nil {
+		return c, err
 	}
 
-	return nil
+	return c, nil
 }
