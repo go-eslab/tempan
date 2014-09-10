@@ -14,7 +14,7 @@ func TestComputeTransient(t *testing.T) {
 	sc := uint32(len(fixtureP)) / cc
 
 	Q := make([]float64, cc*sc)
-	s.ComputeTransient(fixtureP, Q, cc, sc)
+	s.ComputeTransient(fixtureP, Q, sc)
 
 	assert.AlmostEqual(Q, fixtureQ, t)
 }
@@ -31,6 +31,6 @@ func BenchmarkComputeTransient(b *testing.B) {
 	b.ResetTimer()
 
 	for i := 0; i < b.N; i++ {
-		s.ComputeTransient(P, Q, cc, sc)
+		s.ComputeTransient(P, Q, sc)
 	}
 }

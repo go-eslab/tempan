@@ -9,7 +9,8 @@ import (
 // (processing elements), and sc is the number of time steps (power samples);
 // see TimeStep in Config. Q is the corresponding output temperature profile,
 // which is given as a cc-by-sc-matrix.
-func (s *Self) ComputeTransient(P, Q []float64, cc uint32, sc uint32) {
+func (s *Self) ComputeTransient(P, Q []float64, sc uint32) {
+	cc := s.Cores
 	nc := s.Nodes
 
 	S := make([]float64, nc*sc)
