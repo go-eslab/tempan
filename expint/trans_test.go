@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/go-math/support/assert"
-	"github.com/go-math/support/fixture"
+	"github.com/go-math/prob/sample"
 )
 
 func TestComputeTransient(t *testing.T) {
@@ -25,7 +25,7 @@ func BenchmarkComputeTransient(b *testing.B) {
 	cc := uint32(32)
 	sc := uint32(1000)
 
-	P := fixture.MakeMatrix(cc, sc)
+	P := sample.Uniform(cc*sc)
 	Q := make([]float64, cc*sc)
 
 	b.ResetTimer()
