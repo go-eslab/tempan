@@ -5,15 +5,20 @@ import (
 )
 
 // ComputeTransient performs transient temperature analysis. P is an input
-// power profile given as a cc-by-sc matrix where cc is the number of cores
-// (processing elements), and sc is the number of time steps (power samples);
-// see TimeStep in Config. Q is the corresponding output temperature profile,
-// which is given as a cc-by-sc-matrix.
-func (s *Self) ComputeTransient(P, Q []float64, sc uint32) {
+// power profile given as a cc-by-sc matrix where cc is the number of cores,
+// and sc is the number of time steps; see TimeStep in Config. Q is the
+// corresponding output temperature profile, which is given as a
+// cc-by-sc-matrix. S is an optional nc-by-sc matrix, where nc is the number of
+// thermal nodes, for the internal usage of the function to prevent repetitive
+// memory allocation if the analysis is to be performed several times.
+func (s *Self) ComputeTransient(P, Q, S []float64, sc uint32) {
 	cc := s.Cores
 	nc := s.Nodes
 
-	S := make([]float64, nc*sc)
+	if S == nil {
+		S = make([]float64, nc*sc)
+	}
+
 	matrix.Multiply(s.system.F, P, S, nc, cc, sc)
 
 	var i, j, k uint32
