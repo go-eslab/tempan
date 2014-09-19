@@ -16,7 +16,7 @@ func TestLoad(t *testing.T) {
 	assert.AlmostEqual(s.system.D, fixtureD, t)
 
 	assert.AlmostEqual(abs(s.system.U), abs(fixtureU), t)
-	assert.AlmostEqual(s.system.L, fixtureL, t)
+	assert.AlmostEqual(s.system.Λ, fixtureΛ, t)
 
 	assert.AlmostEqual(s.system.E, fixtureE, t)
 	assert.AlmostEqual(s.system.F, fixtureF, t)

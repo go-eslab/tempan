@@ -21,7 +21,7 @@ type Config struct {
 	// The sampling interval of temperature analysis. It is the time between
 	// two successive samples of power or temperature in power or temperature
 	// profiles, respectively. In the formulas given in the general description
-	// of the package, it is referred to as dt.
+	// of the package, it is referred to as Δt.
 	TimeStep float64 // in seconds
 
 	// The temperature of the ambience.

@@ -47,18 +47,18 @@ func New(c Config) (*Self, error) {
 
 	// Reusing A (which is h.G) to store U.
 	U := A
-	L := make([]float64, nc)
-	if err := decomp.SymEig(A, U, L, nc); err != nil {
+	Λ := make([]float64, nc)
+	if err := decomp.SymEig(A, U, Λ, nc); err != nil {
 		return nil, err
 	}
 
-	dt := c.TimeStep
+	Δt := c.TimeStep
 
 	coef := make([]float64, nc)
 	temp := make([]float64, nc*nc)
 
 	for i = 0; i < nc; i++ {
-		coef[i] = math.Exp(dt * L[i])
+		coef[i] = math.Exp(Δt * Λ[i])
 	}
 	for i = 0; i < nc; i++ {
 		for j = 0; j < nc; j++ {
@@ -71,7 +71,7 @@ func New(c Config) (*Self, error) {
 
 	// Technically, temp = temp[0 : nc*cc].
 	for i = 0; i < nc; i++ {
-		coef[i] = (coef[i] - 1) / L[i]
+		coef[i] = (coef[i] - 1) / Λ[i]
 	}
 	for i = 0; i < nc; i++ {
 		for j = 0; j < cc; j++ {
@@ -87,7 +87,7 @@ func New(c Config) (*Self, error) {
 
 	s.system.D = D
 
-	s.system.L = L
+	s.system.Λ = Λ
 	s.system.U = U
 
 	s.system.E = E
