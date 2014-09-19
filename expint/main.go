@@ -48,7 +48,7 @@ func New(c Config) (*Self, error) {
 	// Reusing A (which is h.G) to store U.
 	U := A
 	Λ := make([]float64, nc)
-	if err := decomp.SymEig(A, U, Λ, nc); err != nil {
+	if err := decomp.SymEigen(A, U, Λ, nc); err != nil {
 		return nil, err
 	}
 
