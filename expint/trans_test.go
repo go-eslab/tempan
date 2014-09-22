@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/go-math/support/assert"
-	"github.com/go-math/prob/sample"
+	"github.com/go-math/prob/dist/uniform"
 )
 
 func TestComputeTransient(t *testing.T) {
@@ -26,7 +26,7 @@ func BenchmarkComputeTransient(b *testing.B) {
 	sc := uint32(1000)
 	nc := s.Nodes
 
-	P := sample.Uniform(cc*sc)
+	P := uniform.New(0, 1).Sample(cc*sc)
 	Q := make([]float64, cc*sc)
 	S := make([]float64, nc*sc)
 
