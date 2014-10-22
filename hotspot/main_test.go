@@ -22,7 +22,7 @@ func TestNew(t *testing.T) {
 }
 
 func BenchmarkLoad(b *testing.B) {
-	floorplan := findFixture("002.flp")
+	floorplan := findFixture("032.flp")
 	config := findFixture("hotspot.config")
 	params := ""
 
