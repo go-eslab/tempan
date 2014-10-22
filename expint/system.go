@@ -1,7 +1,7 @@
 package expint
 
 type system struct {
-	// D = C**(½)
+	// D = C**(-½)
 	D []float64
 
 	// A = U * diag(Λ) * U**T
