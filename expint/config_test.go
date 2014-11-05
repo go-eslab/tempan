@@ -3,7 +3,7 @@ package expint
 import (
 	"testing"
 
-	"github.com/go-math/support/assert"
+	"github.com/ready-steady/support/assert"
 )
 
 func TestConfigLoad(t *testing.T) {

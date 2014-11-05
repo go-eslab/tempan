@@ -3,9 +3,9 @@ package expint
 import (
 	"math"
 
-	"github.com/go-eslab/tempan/hotspot"
-	"github.com/go-math/linal/decomp"
-	"github.com/go-math/linal/matrix"
+	"github.com/ready-steady/linal/decomp"
+	"github.com/ready-steady/linal/matrix"
+	"github.com/ready-steady/tempan/hotspot"
 )
 
 // Self represents the algorithm for temperature analysis configured for a

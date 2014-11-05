@@ -1,7 +1,7 @@
 package expint
 
 import (
-	"github.com/go-math/linal/matrix"
+	"github.com/ready-steady/linal/matrix"
 )
 
 // ComputeTransient performs transient temperature analysis. P is an input
