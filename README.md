@@ -1,5 +1,10 @@
 # Temperature Analysis
 
+The repository hosts two packages:
+
+* [expint](expint) and
+* [hotspot](hotspot).
+
 ## Contributing
 
 1. Fork the project.
