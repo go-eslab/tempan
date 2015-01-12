@@ -5,6 +5,26 @@ used in computer-architecture studies.
 
 ## [Documentation][doc]
 
+## Installation
+
+Fetch the package:
+
+```bash
+go get -d github.com/ready-steady/tempan/hotspot
+```
+
+Go to the directory of the package:
+
+```bash
+cd $GOPATH/src/github.com/ready-steady/tempan/hotspot
+```
+
+Finally, install the package:
+
+```bash
+make install
+```
+
 ## References
 
 * K. Skadron, M. Stan, K. Sankaranarayanan, W. Huang, S. Velusamy, and D.
