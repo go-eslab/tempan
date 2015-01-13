@@ -49,11 +49,11 @@ func New(floorplan string, config string, params string) *Model {
 	cparams := C.CString(params)
 	defer C.free(unsafe.Pointer(cparams))
 
-	h := C.newHotSpot(cfloorplan, cconfig, cparams)
-	defer C.freeHotSpot(h)
+	hotspot := C.newHotSpot(cfloorplan, cconfig, cparams)
+	defer C.freeHotSpot(hotspot)
 
-	cc := uint32(h.cores)
-	nc := uint32(h.nodes)
+	cc := uint32(hotspot.cores)
+	nc := uint32(hotspot.nodes)
 
 	m := &Model{
 		Cores: cc,
@@ -63,8 +63,8 @@ func New(floorplan string, config string, params string) *Model {
 		G: make([]float64, nc*nc),
 	}
 
-	C.copyC(h, (*C.double)(unsafe.Pointer(&m.C[0])))
-	C.copyG(h, (*C.double)(unsafe.Pointer(&m.G[0])))
+	C.copyC(hotspot, (*C.double)(unsafe.Pointer(&m.C[0])))
+	C.copyG(hotspot, (*C.double)(unsafe.Pointer(&m.G[0])))
 
 	return m
 }

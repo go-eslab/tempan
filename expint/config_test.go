@@ -7,13 +7,13 @@ import (
 )
 
 func TestConfigLoad(t *testing.T) {
-	c, err := loadConfig(findFixture("002.json"))
+	config, err := loadConfig(findFixture("002.json"))
 
 	assert.Success(err, t)
 
-	assert.Equal(c.Floorplan, findFixture("002.flp"), t)
-	assert.Equal(c.HotSpot.Config, findFixture("hotspot.config"), t)
-	assert.Equal(c.HotSpot.Params, "", t)
-	assert.Equal(c.TimeStep, 1e-3, t)
-	assert.Equal(c.AmbientTemp, 318.15, t)
+	assert.Equal(config.Floorplan, findFixture("002.flp"), t)
+	assert.Equal(config.HotSpot.Config, findFixture("hotspot.config"), t)
+	assert.Equal(config.HotSpot.Params, "", t)
+	assert.Equal(config.TimeStep, 1e-3, t)
+	assert.Equal(config.AmbientTemp, 318.15, t)
 }

@@ -8,18 +8,18 @@ import (
 )
 
 func TestLoad(t *testing.T) {
-	s, _ := Load(findFixture("002.json"))
+	solver, _ := Load(findFixture("002.json"))
 
-	assert.Equal(s.Cores, uint32(2), t)
-	assert.Equal(s.Nodes, uint32(4*2+12), t)
+	assert.Equal(solver.Cores, uint32(2), t)
+	assert.Equal(solver.Nodes, uint32(4*2+12), t)
 
-	assert.AlmostEqual(s.system.D, fixtureD, t)
+	assert.AlmostEqual(solver.system.D, fixtureD, t)
 
-	assert.AlmostEqual(abs(s.system.U), abs(fixtureU), t)
-	assert.AlmostEqual(s.system.Λ, fixtureΛ, t)
+	assert.AlmostEqual(abs(solver.system.U), abs(fixtureU), t)
+	assert.AlmostEqual(solver.system.Λ, fixtureΛ, t)
 
-	assert.AlmostEqual(s.system.E, fixtureE, t)
-	assert.AlmostEqual(s.system.F, fixtureF, t)
+	assert.AlmostEqual(solver.system.E, fixtureE, t)
+	assert.AlmostEqual(solver.system.F, fixtureF, t)
 }
 
 func abs(A []float64) []float64 {

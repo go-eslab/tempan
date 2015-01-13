@@ -11,7 +11,7 @@ import (
 // cc-by-sc-matrix. S is an optional nc-by-sc matrix, where nc is the number of
 // thermal nodes, for the internal usage of the function to prevent repetitive
 // memory allocation if the analysis is to be performed several times.
-func (s *Self) ComputeTransient(P, Q, S []float64, sc uint32) {
+func (s *Solver) ComputeTransient(P, Q, S []float64, sc uint32) {
 	cc := s.Cores
 	nc := s.Nodes
 

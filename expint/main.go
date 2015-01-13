@@ -8,9 +8,9 @@ import (
 	"github.com/ready-steady/tempan/hotspot"
 )
 
-// Self represents the algorithm for temperature analysis configured for a
+// Solver represents the algorithm for temperature analysis configured for a
 // particular problem.
-type Self struct {
+type Solver struct {
 	Config Config
 
 	Cores uint32
@@ -21,23 +21,23 @@ type Self struct {
 
 // New returns an instance of the algorithm set up according to the given
 // configuration.
-func New(c Config) (*Self, error) {
-	s := &Self{
+func New(c Config) (*Solver, error) {
+	s := &Solver{
 		Config: c,
 	}
 
-	h := hotspot.New(c.Floorplan, c.HotSpot.Config, c.HotSpot.Params)
+	model := hotspot.New(c.Floorplan, c.HotSpot.Config, c.HotSpot.Params)
 
-	cc := h.Cores
-	nc := h.Nodes
+	cc := model.Cores
+	nc := model.Nodes
 
 	var i, j uint32
 
-	// Reusing h.G to store A and h.C to store D.
-	A := h.G
-	D := h.C
+	// Reusing model.G to store A and model.C to store D.
+	A := model.G
+	D := model.C
 	for i = 0; i < nc; i++ {
-		D[i] = math.Sqrt(1 / h.C[i])
+		D[i] = math.Sqrt(1 / model.C[i])
 	}
 	for i = 0; i < nc; i++ {
 		for j = 0; j < nc; j++ {
@@ -45,7 +45,7 @@ func New(c Config) (*Self, error) {
 		}
 	}
 
-	// Reusing A (which is h.G) to store U.
+	// Reusing A (which is model.G) to store U.
 	U := A
 	Λ := make([]float64, nc)
 	if err := decomp.SymEig(A, U, Λ, nc); err != nil {
@@ -82,8 +82,8 @@ func New(c Config) (*Self, error) {
 	F := make([]float64, nc*cc)
 	matrix.Multiply(U, temp, F, nc, nc, cc)
 
-	s.Cores = h.Cores
-	s.Nodes = h.Nodes
+	s.Cores = model.Cores
+	s.Nodes = model.Nodes
 
 	s.system.D = D
 
@@ -98,7 +98,7 @@ func New(c Config) (*Self, error) {
 
 // Load returns an instance of the algorithm set up according to the given
 // configuration file.
-func Load(path string) (*Self, error) {
+func Load(path string) (*Solver, error) {
 	config, err := loadConfig(path)
 	if err != nil {
 		return nil, err

@@ -29,18 +29,18 @@ type Config struct {
 }
 
 func loadConfig(path string) (Config, error) {
-	c := Config{}
+	config := Config{}
 
 	file, err := os.Open(path)
 	if err != nil {
-		return c, err
+		return config, err
 	}
 	defer file.Close()
 
 	dec := json.NewDecoder(file)
-	if err = dec.Decode(&c); err != nil {
-		return c, err
+	if err = dec.Decode(&config); err != nil {
+		return config, err
 	}
 
-	return c, nil
+	return config, nil
 }
