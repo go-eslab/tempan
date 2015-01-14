@@ -10,13 +10,13 @@ used in computer-architecture studies.
 Fetch the package:
 
 ```bash
-go get -d github.com/ready-steady/tempan/hotspot
+go get -d github.com/ready-steady/hotspot
 ```
 
 Go to the directory of the package:
 
 ```bash
-cd $GOPATH/src/github.com/ready-steady/tempan/hotspot
+cd $GOPATH/src/github.com/ready-steady/hotspot
 ```
 
 Finally, install the package:
