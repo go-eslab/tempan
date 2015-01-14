@@ -1,5 +1,5 @@
-// Package hotspot provides an interface to HotSpot, a thermal model and
-// simulator used in computer-architecture studies.
+// Package hotspot constructs thermal RC circuits for multiprocessor systems
+// based on the block model of HotSpot.
 //
 // http://lava.cs.virginia.edu/HotSpot/
 package hotspot
