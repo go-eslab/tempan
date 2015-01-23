@@ -1,4 +1,4 @@
-# HotSpot
+# HotSpot [![Build Status][travis-svg]][travis-url]
 
 The package constructs thermal RC circuits for multiprocessor systems based on
 the block model of [HotSpot][1].
@@ -42,3 +42,5 @@ make install
 [2]: http://www.virginia.edu/cs/people/faculty/pdfs/p94-skadron.pdf
 
 [doc]: http://godoc.org/github.com/ready-steady/hotspot
+[travis-svg]: https://travis-ci.org/ready-steady/hotspot.svg?branch=master
+[travis-url]: https://travis-ci.org/ready-steady/hotspot
