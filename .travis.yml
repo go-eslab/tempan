@@ -1,3 +1,9 @@
 language: go
 
 install: make
+
+script: go test
+
+notifications:
+  email:
+    on_success: never
