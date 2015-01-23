@@ -1,8 +1,11 @@
 language: go
 
-install: make
+install:
+  - go get ./...
+  - make install
 
-script: go test
+script:
+  - go test
 
 notifications:
   email:
