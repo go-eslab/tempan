@@ -1,0 +1,3 @@
+[submodule "hotspot"]
+	path = hotspot
+	url = https://github.com/copies/hotspot
