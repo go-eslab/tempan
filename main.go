@@ -4,7 +4,7 @@
 // http://lava.cs.virginia.edu/HotSpot/
 package hotspot
 
-// #cgo CFLAGS: -Ibuild
+// #cgo CFLAGS: -Ihotspot
 // #cgo LDFLAGS: -lm
 // #include <stdlib.h>
 // #include "hotspot.h"
