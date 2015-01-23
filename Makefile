@@ -1,7 +1,4 @@
-archive := HotSpot-5.02.tar.gz
-url := http://lava.cs.virginia.edu/HotSpot/grab/$(archive)
-
-build := build
+build := hotspot
 syso := main.syso
 
 all: $(syso)
@@ -17,14 +14,8 @@ $(syso): $(build)/libhotspot.a
 $(build)/libhotspot.a: $(build)
 	$(MAKE) -C $(build)
 
-$(build): $(archive)
-	mkdir $@
-	tar -xzf $(archive) --strip=1 -C $@
-
-$(archive):
-	curl $(url) -o $@
-
 clean:
-	rm -rf $(archive) $(build) $(syso)
+	rm -rf $(syso) $(build)/$(syso)
+	$(MAKE) -C $(build) clean
 
 .PHONY: all install clean
