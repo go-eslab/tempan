@@ -21,6 +21,14 @@ func TestNew(t *testing.T) {
 	assert.AlmostEqual(model.G, fixtureG, t)
 }
 
+func TestNewWithParams(t *testing.T) {
+	model := New(findFixture("002.flp"), findFixture("hotspot.config"),
+		"t_chip 0.00042 k_chip 42")
+
+	assert.AlmostEqual(model.C, fixtureC42, t)
+	assert.AlmostEqual(model.G, fixtureG42, t)
+}
+
 func BenchmarkLoad(b *testing.B) {
 	floorplan := findFixture("032.flp")
 	config := findFixture("hotspot.config")
