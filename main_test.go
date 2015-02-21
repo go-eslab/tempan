@@ -17,16 +17,16 @@ func TestNew(t *testing.T) {
 	assert.Equal(model.Cores, uint(2), t)
 	assert.Equal(model.Nodes, uint(20), t)
 
-	assert.AlmostEqual(model.C, fixtureC, t)
-	assert.AlmostEqual(model.G, fixtureG, t)
+	assert.EqualWithin(model.C, fixtureC, 2e-15, t)
+	assert.EqualWithin(model.G, fixtureG, 2e-14, t)
 }
 
 func TestNewWithParams(t *testing.T) {
 	model := New(findFixture("002.flp"), findFixture("hotspot.config"),
 		"t_chip 0.00042 k_chip 42")
 
-	assert.AlmostEqual(model.C, fixtureC42, t)
-	assert.AlmostEqual(model.G, fixtureG42, t)
+	assert.EqualWithin(model.C, fixtureC42, 1e-15, t)
+	assert.EqualWithin(model.G, fixtureG42, 1e-15, t)
 }
 
 func BenchmarkLoad(b *testing.B) {
