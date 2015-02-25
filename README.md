@@ -1,7 +1,7 @@
 # HotSpot [![Build Status][travis-svg]][travis-url]
 
-The package constructs thermal RC circuits for multiprocessor systems based on
-the block model of [HotSpot][1].
+The package constructs thermal RC circuits for electronic systems based on the
+block model of [HotSpot][1].
 
 ## [Documentation][doc]
 

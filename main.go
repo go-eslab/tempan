@@ -1,5 +1,5 @@
-// Package hotspot constructs thermal RC circuits for multiprocessor systems
-// based on the block model of HotSpot.
+// Package hotspot constructs thermal RC circuits for electronic systems based
+// on the block model of HotSpot.
 //
 // http://lava.cs.virginia.edu/HotSpot/
 package hotspot
@@ -15,17 +15,17 @@ import "unsafe"
 // Model represents the block variant of the HotSpot model. The thermal system
 // under consideration is as follows:
 //
-//     diag(C) * dT/dt + G * (T - Tamb) = P
+//               dQ
+//     diag(C) * -- + G * (Q - Qamb) = P.
+//               dt
 //
-// where
+// The number of thermal nodes is denoted by Nodes. Then, in the above system,
 //
-//     Cores is the number of cores (active thermal nodes),
-//     Nodes is the number of thermal nodes (4 * Cores + 12),
-//
-//     T is a Nodes-element vector of temperature,
-//     P is a Cores-element vector of power,
-//     C is a Nodes-element vector of capacitance, and
-//     G is a (Nodes x Nodes) matrix of conductance.
+//     C is a Nodes-element vector of the thermal capacitance,
+//     G is a Nodes-by-Nodes matrix of the thermal conductance,
+//     Q is a Nodes-element vector of the heat dissipation,
+//     P is a Nodes-element vector of the power consumption, and
+//     Qamb is a vector of the ambient temperature.
 type Model struct {
 	Cores uint
 	Nodes uint
@@ -34,22 +34,18 @@ type Model struct {
 	G []float64
 }
 
-// New returns the block HotSpot model corresponding to the given floorplan
-// file, configuration file, and parameter line. The parameter line bears the
-// same meaning as the command-line arguments of the HotSpot tool. The names of
-// parameters should not include dashes in front of them; for instance, params
-// can be "t_chip 0.00015 k_chip 100.0".
-func New(floorplan string, config string, params string) *Model {
-	cfloorplan := C.CString(floorplan)
-	defer C.free(unsafe.Pointer(cfloorplan))
+// New constructs a thermal RC circuit according to the given configuration.
+func New(config *Config) *Model {
+	floorplan := C.CString(config.Floorplan)
+	defer C.free(unsafe.Pointer(floorplan))
 
-	cconfig := C.CString(config)
-	defer C.free(unsafe.Pointer(cconfig))
+	configuration := C.CString(config.Configuration)
+	defer C.free(unsafe.Pointer(configuration))
 
-	cparams := C.CString(params)
-	defer C.free(unsafe.Pointer(cparams))
+	parameters := C.CString(config.Parameters)
+	defer C.free(unsafe.Pointer(parameters))
 
-	hotspot := C.newHotSpot(cfloorplan, cconfig, cparams)
+	hotspot := C.newHotSpot(floorplan, configuration, parameters)
 	defer C.freeHotSpot(hotspot)
 
 	cc := uint(hotspot.cores)
