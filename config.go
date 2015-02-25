@@ -1,10 +1,10 @@
 package hotspot
 
-// Config is a configuration of the HotSpot tool.
+// Config is a configuration of the HotSpot model.
 type Config struct {
 	// A floorplan of an electronic system.
 	Floorplan string
-	// A native configuration file of the HotSpot tool (hotspot.config).
+	// A native configuration file of the HotSpot model (hotspot.config).
 	Configuration string
 	// A line of parameters overwriting the parameters in the native
 	// configuration file. The names and values of the parameters should be
