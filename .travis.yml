@@ -1,7 +1,7 @@
 language: go
 
 install:
-  - go get github.com/ready-steady/support/assert
+  - go get -t ./...
   - make install
 
 script:
