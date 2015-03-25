@@ -22,7 +22,6 @@ cd $GOPATH/src/github.com/ready-steady/hotspot
 Finally, install the package:
 
 ```bash
-git submodule update --init
 make install
 ```
 
