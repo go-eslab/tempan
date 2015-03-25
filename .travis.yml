@@ -2,7 +2,6 @@ language: go
 
 install:
   - go get -d -t ./...
-  - git submodule update --init
   - make install
 
 script:
