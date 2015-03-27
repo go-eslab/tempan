@@ -18,7 +18,7 @@ $(build)/Makefile:
 	git submodule update --init
 
 clean:
-	rm -rf $(syso) $(build)/$(syso)
-	$(MAKE) -C $(build) clean
+	rm -rf $(syso)
+	cd $(build) && (git checkout . && git clean -df)
 
 .PHONY: all install clean
