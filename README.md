@@ -28,8 +28,8 @@ make install
 ## References
 
 * K. Skadron, M. Stan, K. Sankaranarayanan, W. Huang, S. Velusamy, and D.
-  Tarjan, “[Temperature-Aware Microarchitecture: Modeling and
-  Implementation][2],” ACM Transactions Architecture and Code Optimization, vol.
+  Tarjan, “[Temperature-aware microarchitecture: modeling and
+  implementation][2],” ACM Transactions Architecture and Code Optimization, vol.
   1, pp. 94–125, March 2004.
 
 ## Contributing
@@ -38,7 +38,7 @@ make install
 2. Implement your idea.
 3. Create a pull request.
 
-[1]: http://lava.cs.virginia.edu/HotSpot/
+[1]: http://lava.cs.virginia.edu/HotSpot
 [2]: http://www.virginia.edu/cs/people/faculty/pdfs/p94-skadron.pdf
 
 [doc]: http://godoc.org/github.com/ready-steady/hotspot
