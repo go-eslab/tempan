@@ -10,13 +10,13 @@ block model of [HotSpot][1].
 Fetch the package:
 
 ```bash
-go get -d github.com/ready-steady/hotspot
+go get -d github.com/simulated-reality/hotspot
 ```
 
 Go to the directory of the package:
 
 ```bash
-cd $GOPATH/src/github.com/ready-steady/hotspot
+cd $GOPATH/src/github.com/simulated-reality/hotspot
 ```
 
 Finally, install the package:
@@ -41,6 +41,6 @@ make install
 [1]: http://lava.cs.virginia.edu/HotSpot
 [2]: http://www.virginia.edu/cs/people/faculty/pdfs/p94-skadron.pdf
 
-[doc]: http://godoc.org/github.com/ready-steady/hotspot
-[travis-svg]: https://travis-ci.org/ready-steady/hotspot.svg?branch=master
-[travis-url]: https://travis-ci.org/ready-steady/hotspot
+[travis-svg]: https://travis-ci.org/simulated-reality/hotspot.svg?branch=master
+[travis-url]: https://travis-ci.org/simulated-reality/hotspot
+[doc]: http://godoc.org/github.com/simulated-reality/hotspot
