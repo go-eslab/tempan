@@ -36,7 +36,7 @@ make install
 
 1. Fork the project.
 2. Implement your idea.
-3. Create a pull request.
+3. Open a pull request.
 
 [1]: http://lava.cs.virginia.edu/HotSpot
 [2]: http://www.virginia.edu/cs/people/faculty/pdfs/p94-skadron.pdf
