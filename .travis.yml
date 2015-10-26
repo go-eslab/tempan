@@ -1,4 +1,5 @@
 language: go
+sudo: false
 
 install:
   - go get -d -t ./...
@@ -8,5 +9,4 @@ script:
   - go test
 
 notifications:
-  email:
-    on_success: never
+  email: false
