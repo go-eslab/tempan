@@ -1,5 +1,4 @@
-// Package hotspot constructs thermal RC circuits for electronic systems based
-// on the block model of HotSpot.
+// Package hotspot provides an interface to HotSpot.
 //
 // http://lava.cs.virginia.edu/HotSpot/
 package hotspot
