@@ -16,10 +16,8 @@ $(object): $(target)/libcircuit.a
 	ld -r -o $@ $(target)/$@/*.o
 
 $(target)/libcircuit.a: $(target)
-	$(MAKE) -C $(source)
-
-$(target):
 	mkdir -p $(target)
+	$(MAKE) -C $(source)
 
 clean:
 	$(MAKE) -C $(source) clean
