@@ -1,6 +1,6 @@
 // Package hotspot provides an interface to HotSpot.
 //
-// http://lava.cs.virginia.edu/HotSpot/
+// http://lava.cs.virginia.edu/HotSpot
 package hotspot
 
 // #cgo CFLAGS: -Isource -Isource/hotspot
