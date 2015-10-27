@@ -15,7 +15,7 @@ $(object): $(target)/libcircuit.a
 	cd $(target)/$@ && ar x ../libcircuit.a
 	ld -r -o $@ $(target)/$@/*.o
 
-$(target)/libcircuit.a: $(target)
+$(target)/libcircuit.a:
 	mkdir -p $(target)
 	$(MAKE) -C $(source)
 
