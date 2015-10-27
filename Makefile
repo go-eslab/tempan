@@ -3,7 +3,6 @@ source := $(root)/source
 target := $(root)/target
 object := main.syso
 
-export ROOT_DIR := $(root)
 export OUTPUT_DIR := $(target)
 
 all: $(object)

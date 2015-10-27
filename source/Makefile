@@ -1,9 +1,8 @@
-root := $(ROOT_DIR)
+source := $(shell pwd)
 output := $(OUTPUT_DIR)
+hotspot := $(source)/hotspot
 
 flags := -fPIC -O3
-source := $(root)/source
-hotspot := $(source)/hotspot
 
 $(output)/libcircuit.a: $(output)/libhotspot.a $(output)/circuit.o
 	cp $(output)/libhotspot.a $@
@@ -21,6 +20,6 @@ $(hotspot)/Makefile:
 	git submodule update --init
 
 clean:
-	cd $(hotspot) && (git checkout . && git clean -df)
+	cd $(hotspot) && git clean -df
 
 .PHONY: clean
