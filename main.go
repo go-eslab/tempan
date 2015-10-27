@@ -3,10 +3,11 @@
 // http://lava.cs.virginia.edu/HotSpot/
 package hotspot
 
-// #cgo CFLAGS: -Ihotspot
+// #cgo CFLAGS: -Isource -Isource/hotspot
 // #cgo LDFLAGS: -lm
 // #include <stdlib.h>
-// #include "hotspot.h"
+// #include <string.h>
+// #include <circuit.h>
 import "C"
 
 import "unsafe"
@@ -35,20 +36,21 @@ type Model struct {
 
 // New constructs a thermal RC circuit according to the given configuration.
 func New(config *Config) *Model {
+	const (
+		sizeOfFloat64 = 8
+	)
+
 	floorplan := C.CString(config.Floorplan)
 	defer C.free(unsafe.Pointer(floorplan))
 
 	configuration := C.CString(config.Configuration)
 	defer C.free(unsafe.Pointer(configuration))
 
-	parameters := C.CString(config.Parameters)
-	defer C.free(unsafe.Pointer(parameters))
+	circuit := C.newCircuit(floorplan, configuration)
+	defer C.dropCircuit(circuit)
 
-	hotspot := C.newHotSpot(floorplan, configuration, parameters)
-	defer C.freeHotSpot(hotspot)
-
-	cc := uint(hotspot.cores)
-	nc := uint(hotspot.nodes)
+	cc := uint(circuit.units)
+	nc := uint(circuit.nodes)
 
 	m := &Model{
 		Cores: cc,
@@ -58,8 +60,10 @@ func New(config *Config) *Model {
 		G: make([]float64, nc*nc),
 	}
 
-	C.copyC(hotspot, (*C.double)(unsafe.Pointer(&m.C[0])))
-	C.copyG(hotspot, (*C.double)(unsafe.Pointer(&m.G[0])))
+	C.memcpy(unsafe.Pointer(&m.C[0]), unsafe.Pointer(circuit.capacitance),
+		C.size_t(sizeOfFloat64*nc))
+	C.memcpy(unsafe.Pointer(&m.G[0]), unsafe.Pointer(circuit.conductance),
+		C.size_t(sizeOfFloat64*nc*nc))
 
 	return m
 }

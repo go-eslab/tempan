@@ -1,24 +1,29 @@
-build := hotspot
-syso := main.syso
+root := $(shell pwd)
+source := $(root)/source
+target := $(root)/target
+object := main.syso
 
-all: $(syso)
+export ROOT_DIR := $(root)
+export OUTPUT_DIR := $(target)
 
-install: $(syso)
+all: $(object)
+
+install: $(object)
 	go install
 
-$(syso): $(build)/libhotspot.a
-	mkdir -p $(build)/$@
-	cd $(build)/$@ && ar x ../libhotspot.a
-	ld -r -o $@ $(build)/$@/*.o
+$(object): $(target)/libcircuit.a
+	mkdir -p $(target)/$@
+	cd $(target)/$@ && ar x ../libcircuit.a
+	ld -r -o $@ $(target)/$@/*.o
 
-$(build)/libhotspot.a: $(build)/Makefile
-	$(MAKE) -C $(build)
+$(target)/libcircuit.a: $(target)
+	$(MAKE) -C $(source)
 
-$(build)/Makefile:
-	git submodule update --init
+$(target):
+	mkdir -p $(target)
 
 clean:
-	rm -rf $(syso)
-	cd $(build) && (git checkout . && git clean -df)
+	$(MAKE) -C $(source) clean
+	rm -rf $(target) $(object)
 
 .PHONY: all install clean
