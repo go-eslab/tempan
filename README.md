@@ -9,13 +9,13 @@ The package provides an interface to [HotSpot][1].
 Fetch the package:
 
 ```bash
-go get -d github.com/simulated-reality/hotspot
+go get -d github.com/turing-complete/hotspot
 ```
 
 Go to the directory of the package:
 
 ```bash
-cd $GOPATH/src/github.com/simulated-reality/hotspot
+cd $GOPATH/src/github.com/turing-complete/hotspot
 ```
 
 Finally, install the package:
@@ -40,6 +40,6 @@ make install
 [1]: http://lava.cs.virginia.edu/HotSpot
 [2]: http://www.virginia.edu/cs/people/faculty/pdfs/p94-skadron.pdf
 
-[travis-svg]: https://travis-ci.org/simulated-reality/hotspot.svg?branch=master
-[travis-url]: https://travis-ci.org/simulated-reality/hotspot
-[doc]: http://godoc.org/github.com/simulated-reality/hotspot
+[travis-svg]: https://travis-ci.org/turing-complete/hotspot.svg?branch=master
+[travis-url]: https://travis-ci.org/turing-complete/hotspot
+[doc]: http://godoc.org/github.com/turing-complete/hotspot
