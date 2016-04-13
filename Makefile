@@ -1,26 +1,28 @@
 root := $(shell pwd)
 source := $(root)/source
 target := $(root)/target
-object := main.syso
+
+clibrary := libcircuit.a
+glibrary := main.syso
 
 export OUTPUT_DIR := $(target)
 
-all: $(object)
+all: $(glibrary)
 
-install: $(object)
+install: $(glibrary)
 	go install
 
-$(object): $(target)/libcircuit.a
-	mkdir -p $(target)/$@
-	cd $(target)/$@ && ar x ../libcircuit.a
-	ld -r -o $@ $(target)/$@/*.o
+$(glibrary): $(target)/$(clibrary)
+	mkdir -p $(target)/objects
+	cd $(target)/objects && ar x $<
+	ld -r -o $@ $(target)/objects/*.o
 
-$(target)/libcircuit.a:
+$(target)/$(clibrary):
 	mkdir -p $(target)
 	$(MAKE) -C $(source)
 
 clean:
+	rm -rf $(target) $(glibrary)
 	$(MAKE) -C $(source) clean
-	rm -rf $(target) $(object)
 
 .PHONY: all install clean
