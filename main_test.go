@@ -19,8 +19,8 @@ func TestNew(t *testing.T) {
 	assert.Equal(model.Cores, uint(2), t)
 	assert.Equal(model.Nodes, uint(20), t)
 
-	assert.EqualWithin(model.C, fixtureC, 2e-15, t)
-	assert.EqualWithin(model.G, fixtureG, 2e-14, t)
+	assert.Close(model.C, fixtureC, 2e-15, t)
+	assert.Close(model.G, fixtureG, 2e-14, t)
 }
 
 func BenchmarkNew(b *testing.B) {
